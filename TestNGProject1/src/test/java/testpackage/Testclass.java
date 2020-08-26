@@ -29,6 +29,7 @@ public class Testclass extends Utility {
 		String expectedTitle = "Women - My Store";
 		Assert.assertEquals("Condition true", actualTitle, expectedTitle);
 		Actions act = new Actions(driver);
+		System.out.println("welcome to Skilldrive");
 		act.moveToElement(hm.WomenTops).build().perform(); 
 		endTest();
 	}
