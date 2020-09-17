@@ -46,14 +46,25 @@ public class BaseLibrary {
 
 	}
 
-	@BeforeSuite
-	public void invokereports() {
-		reports = new ExtentReports(reportLocation + "Reports_" + dateformat.format(date) + ".html");
-	}
+	
+	/*  @BeforeSuite public void invokereports() { reports = new
+	  ExtentReports(reportLocation + "Reports_" + dateformat.format(date) +
+	  ".html"); reports .addSystemInfo("Environment URL", prop.getProperty("url"))
+	  .addSystemInfo("Browser", prop.getProperty("browser")) .addSystemInfo("Test",
+	  "xyz"); }
+	 */
+	
+//if we specify the above code in @BeforeClass we can see the Environment details in ExtentReports
 
 	@BeforeClass
 	public void LaunchBrowser() throws Exception {
+		reports = new ExtentReports(reportLocation + "Reports_" + dateformat.format(date) + ".html");
 		initialize();
+		reports
+		.addSystemInfo("Environment URL", prop.getProperty("url"))
+		.addSystemInfo("Browser", prop.getProperty("browser"))
+		.addSystemInfo("Test", "xyz");
+		
 		if (prop.getProperty("browser").equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
